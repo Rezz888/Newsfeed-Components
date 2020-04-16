@@ -85,6 +85,25 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+          
+  },
+  {
+    title: 'This is a new test article',
+    date: 'April 16th, 2020',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+
+
   }
 ];
 
@@ -103,6 +122,8 @@ const data = [
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
+
+
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: return the entire component.
@@ -112,3 +133,57 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function dataComponent(articleData){
+
+const articleV = document.createElement('div');
+const articleTitle = document.createElement('h2');
+const articleDate = document.createElement('p');
+const firstPara = document.createElement('p');
+const secondPara = document.createElement('p');
+const thirdPara = document.createElement('p');
+const expandBut = document.createElement('span');
+
+articleV.classList.add('article');
+articleDate.classList.add('date');
+expandBut.classList.add('expandButton');
+
+articleTitle.textContent = articleData.title;
+articleDate.textContent = articleData.date;
+firstPara.textContent = articleData.firstParagraph;
+secondPara.textContent = articleData.secondParagraph;
+thirdPara.textContent = articleData.thirdParagraph;
+expandBut.textContent = 'Read More..';
+
+
+articleV.appendChild(articleTitle);
+articleV.appendChild(articleDate);
+articleV.appendChild(firstPara);
+articleV.appendChild(secondPara);
+articleV.appendChild(thirdPara);
+articleV.appendChild(expandBut);
+
+// event handler
+expandBut.addEventListener('click', (event)=>{
+   articleV.classList.toggle('article-open');
+})
+
+return articleV;
+}
+
+const articles = document.querySelector('.articles');
+const firstData = dataComponent(data[0]);
+
+
+articles.appendChild(firstData);
+
+data.forEach((articleObj) => {
+  articles.appendChild(dataComponent(articleObj));
+})
+
+
+
+
+
+
+
