@@ -33,35 +33,33 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
-
-const header = document.querySelector('.header');
+const selectHeader = document.querySelector('.header');
 const menuButton = document.querySelector('.menu-button');
 
-function menuFactory(items) {
+function menuFn(arrayParam){
+// <div class="menu">  </div>
+const menuComponent = document.createElement('div');
+menuComponent.classList.add('menu');
 
-  // create elements
-  const menu = document.createElement('div');
-  const ul = document.createElement('ul');
+// <ul> </ul>
+const menuList = document.createElement('ul');
 
-  // create structure
- menu.appendChild(ul);
+// <ul> appended inside of <div>
+menuComponent.appendChild(menuList);
 
-  //set content
-  menuItems.forEach((i) => {
-    const li = document.createElement('li');
-    li.textContent = i; 
-    ul.appendChild(li);
-  })
+menuItems.forEach((arrItem) => {
+  let list = document.createElement('li');
+  list.textContent = arrItem;
+  menuList.appendChild(list);
+})
 
-  // apply styles
-  menu.classList.add('menu');
+menuButton.addEventListener('click', (event) =>{
+   menuComponent.classList.toggle('menu--open');
+})
+return menuComponent
 
-  //event handlers
-  menuButton.addEventListener('click', (e) => {
-    menu.classList.toggle('menu--open');
-  })    
-
-  return menu;
 }
 
-header.appendChild(menuFactory(menuItems)); 
+
+selectHeader.appendChild(menuFn(menuItems));
+
