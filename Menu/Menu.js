@@ -6,7 +6,8 @@ let menuItems = [
   "What's New",
   'Tech Trends',
   'Music',
-  'Log Out'
+  'Log Out',
+  'ja vag'
 ];
 
 /* 
@@ -31,35 +32,36 @@ let menuItems = [
   Step 5: return the menu component.
 
   Step 6: add the menu component to the DOM.
-  
 */
-const selectHeader = document.querySelector('.header');
-const menuButton = document.querySelector('.menu-button');
+function menuComponent(arrayParam){
+   
+  // Create element
+  const menu = document.createElement('div');
+  const ul = document.createElement('ul');
 
-function menuFn(arrayParam){
-// <div class="menu">  </div>
-const menuComponent = document.createElement('div');
-menuComponent.classList.add('menu');
+  // Create class for style
+  menu.classList.add('menu');
 
-// <ul> </ul>
-const menuList = document.createElement('ul');
+  // Appending
+  menu.appendChild(ul);
 
-// <ul> appended inside of <div>
-menuComponent.appendChild(menuList);
+  // Creating  list item after iterating over each item and then append inside of ul
+  menuItems.forEach((arrItem) => {
+     let li = document.createElement('li');
+     li.textContent = arrItem;
+     ul.appendChild(li);
+     })
+    
+    //  Adding a click event on the menu button
+     const menuButton = document.querySelector('.menu-button');
+     menuButton.addEventListener('click', (e) => {
+       console.log(e.target)
+        menu.classList.toggle('menu--open');
+  })
 
-menuItems.forEach((arrItem) => {
-  let list = document.createElement('li');
-  list.textContent = arrItem;
-  menuList.appendChild(list);
-})
-
-menuButton.addEventListener('click', (event) =>{
-   menuComponent.classList.toggle('menu--open');
-})
-return menuComponent
-
+  return menu;
 }
 
-
-selectHeader.appendChild(menuFn(menuItems));
+const addMenuToDom = document.querySelector('.header');
+addMenuToDom.appendChild(menuComponent(menuItems));
 

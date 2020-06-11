@@ -136,6 +136,7 @@ const data = [
 
 function dataComponent(articleData){
 
+// Creating the element
 const articleV = document.createElement('div');
 const articleTitle = document.createElement('h2');
 const articleDate = document.createElement('p');
@@ -144,10 +145,12 @@ const secondPara = document.createElement('p');
 const thirdPara = document.createElement('p');
 const expandBut = document.createElement('span');
 
+// Giving classes to the element for styling
 articleV.classList.add('article');
 articleDate.classList.add('date');
 expandBut.classList.add('expandButton');
 
+// Programmatically update content
 articleTitle.textContent = articleData.title;
 articleDate.textContent = articleData.date;
 firstPara.textContent = articleData.firstParagraph;
@@ -155,7 +158,7 @@ secondPara.textContent = articleData.secondParagraph;
 thirdPara.textContent = articleData.thirdParagraph;
 expandBut.textContent = 'Read More..';
 
-
+// Appending
 articleV.appendChild(articleTitle);
 articleV.appendChild(articleDate);
 articleV.appendChild(firstPara);
@@ -172,12 +175,10 @@ return articleV;
 }
 
 const articles = document.querySelector('.articles');
-const firstData = dataComponent(data[0]);
 
-
-articles.appendChild(firstData);
 
 data.forEach((articleObj) => {
+  // console.log(articleObj.title)
   articles.appendChild(dataComponent(articleObj));
 })
 
